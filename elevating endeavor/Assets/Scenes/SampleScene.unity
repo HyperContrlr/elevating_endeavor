@@ -534,8 +534,8 @@ GameObject:
   - component: {fileID: 818658179}
   - component: {fileID: 818658178}
   m_Layer: 0
-  m_Name: plane area
-  m_TagString: Untagged
+  m_Name: ground
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1038,6 +1038,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   rb: {fileID: 1837422581}
+  jumpForce: 176.58
+  canJump: 1
+  lite: {fileID: 5324564815524483359, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  medium: {fileID: 6636112683412122101, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  heavy: {fileID: 7605400869144434483, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  special: {fileID: -2235606785049355124, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  block: {fileID: 8604589109446459096, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  jump: {fileID: 5725209027204288344, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!54 &1837422581
 Rigidbody:
   m_ObjectHideFlags: 0
