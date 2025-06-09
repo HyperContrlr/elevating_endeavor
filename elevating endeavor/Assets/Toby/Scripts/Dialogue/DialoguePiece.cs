@@ -6,17 +6,16 @@ public partial class DialogueManager
     [System.Serializable]
     public struct DialoguePiece
     {
-        public string name;
-        
-        public GameObject dialogueBox;
-        
-        public UnityEvent sentenceStartEvent;
-        
-        public UnityEvent sentenceEndEvent;
-        
-        public bool hasEvent;
+        [SerializeField] private string _speaker;
+        public readonly string Speaker => _speaker;
 
-        [TextArea(3, 10)]
-        public string sentence;
+        [SerializeField][TextArea] private string _text;
+        public readonly string Text => _text;
+
+        [SerializeField] private UnityEvent _onDialogue;
+        public readonly void InvokeOnDialogue() => _onDialogue?.Invoke();
+
+        [SerializeField] private UnityEvent _onDialogueFinish;
+        public readonly void InvokeOnDialogueFinish() => _onDialogueFinish?.Invoke();
     }
 }
