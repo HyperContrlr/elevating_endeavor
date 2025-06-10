@@ -1,15 +1,21 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class topDownMovement : MonoBehaviour
 {
+        float radius = 0.5f;
+        float maxDistance = 1f;
     public float moveSpeed;
     public Rigidbody rb;
     private Vector3 moveInput;
     public float jumpForce;
     private float activeMoveSpeed;
     public bool canJump;
+    public bool canAtk;
+    public float currentDelay;
     //public Animator animator;
 
     public InputActionReference lite, medium, heavy, special, block, jump;
@@ -41,14 +47,17 @@ public class topDownMovement : MonoBehaviour
     {
         canJump = false;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        activeMoveSpeed = moveSpeed;
-    }
     private void light_Pressed(InputAction.CallbackContext obj)
     {
         Debug.Log("Light Attack");
+        //ok so pretty much copy this for all the different things, make sure that it originates at the arms of sumthin like that
+        RaycastHit hit;
+        Vector3 origin = transform.position;
+        Vector3 direction = transform.forward;
+        if (Physics.SphereCast(origin, radius, direction, out hit, maxDistance))
+        {
+            Debug.Log("Hit: " + hit.collider.name);
+        }
     }
     private void medium_Pressed(InputAction.CallbackContext obj)
     {
@@ -76,6 +85,15 @@ public class topDownMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Acceleration);
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        activeMoveSpeed = moveSpeed;
     }
     // Update is called once per frame
     void Update()
@@ -107,5 +125,6 @@ public class topDownMovement : MonoBehaviour
         //else
         //{
         //}
+
     }
 }
